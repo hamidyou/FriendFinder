@@ -17,15 +17,22 @@
 </head>
 
 <body>
-  <div class="jumbotron">
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="nav navbar-nav">
+      <a class="nav-item nav-link" href="/">Home </a>
+      <a class="nav-item nav-link active" href="/survey">Survey <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/api/friends">See List of Friends</a>
+    </div>
+  </nav>
+  <div class="jumbotron text-center">
     <h1 class="display-3">Friend Finder</h1>
     <hr class="my-2">
-    <p>Fill out the survey below.</p>
+    <h4>Fill out the survey below to find your most compatible friend.</h4>
   </div>
 </body>
 
 <div class="container">
-  <form>
+  <form class="mb-5">
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" placeholder="John Doe" required>
@@ -184,37 +191,10 @@
         <option value="6">6 - Strongly Agree</option>
       </select>
     </div>
-    <a class="btn btn-primary btn-lg" href="/results" role="button" id="submit">Results</a>
+    <a class="btn btn-primary btn-lg" href="/results" role="button" id="submit">Submit</a>
   </form>
 </div>
 
-<script type="text/javascript">
-  $(document).on('click', '#submit', function (event) {
-    event.preventDefault()
-    const newFriend = {
-      name: $("#name").val().trim(),
-      photo: $("#photo").val().trim(),
-      scores: [
-        $("#q1options").val().trim(),
-        $("#q2options").val().trim(),
-        $("#q3options").val().trim(),
-        $("#q4options").val().trim(),
-        $("#q5options").val().trim(),
-        $("#q6options").val().trim(),
-        $("#q7options").val().trim(),
-        $("#q8options").val().trim(),
-        $("#q9options").val().trim(),
-        $("#q10options").val().trim()
-      ]
-    };
-
-    // Question: What does this code do??
-    $.post('/api/friends', newFriend)
-      .then(function (data) {
-        console.log('newFriend', data)
-      })
-  })
-</script>
-
+<script src="/app/data/survey.js"></script>
 
 </html>

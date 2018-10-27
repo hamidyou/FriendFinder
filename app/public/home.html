@@ -16,20 +16,22 @@
     crossorigin="anonymous">
 </head>
 
-<body>
-  <div class="jumbotron">
+<body class="bg-light">
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="nav navbar-nav">
+      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/survey">Survey</a>
+      <a class="nav-item nav-link" href="/api/friends">See List of Friends</a>
+    </div>
+  </nav>
+  <div class="jumbotron text-center">
     <h1 class="display-3">Friend Finder</h1>
     <hr class="my-2">
     <p>Fill out the survey to find your most compatible friend.</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="/survey" role="button">Take Survey Now</a>
-    </p>
-    <P class="lead">
-      <a class="btn btn-primary btn-lg" href="/api/friends" role="button">See Friends</a>
-    </P>
-    <P class="lead">
-      <a class="btn btn-primary btn-lg" href="/results" role="button">Results</a>
-    </P>
+    <div class="container">
+      <a class="btn btn-primary btn-lg mx-2" href="/survey" role="button">Take Survey Now</a>
+      <a class="btn btn-primary btn-lg mx-2" href="/api/friends" role="button">See Friends</a>
+    </div>
   </div>
 </body>
 

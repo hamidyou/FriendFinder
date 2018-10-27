@@ -55,17 +55,16 @@ router.post('/api/friends', function (req, res) {
 
   const results =
     `
-    Your most compatible friend is: ${findMatch(low, diffArray)[0]}.
-  `
+${newFriend.name}, thank you very much for participating.
+Your most compatible friend is: ${findMatch(low, diffArray)[0]}.
+`
 
   fs.writeFile('app/data/results.txt', results, err => {
     if (err) {
       throw err
     }
     console.log('Results updated successfully.')
-  }
-  )
-
+  })
   res.json(newFriend)
 })
 

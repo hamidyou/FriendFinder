@@ -17,13 +17,22 @@
 </head>
 
 <body>
-  <div class="jumbotron">
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="nav navbar-nav">
+      <a class="nav-item nav-link" href="/">Home</a>
+      <a class="nav-item nav-link" href="/survey">Survey</a>
+      <a class="nav-item nav-link" href="/api/friends">See List of Friends</a>
+      <a class="nav-item nav-link active" href="/results">Results<span class="sr-only">(current)</span></a>
+    </div>
+  </nav>
+  <div class="jumbotron text-center">
     <h1 class="display-3">Friend Finder</h1>
     <hr class="my-2">
-    <p>RESULTS</p>
-    <div id="resultsDisplay">
+    <h2>RESULTS</h2>
+  </div>
 
-    </div>
+  <div class="container text-center">
+    <h4 id="resultsDisplay"></h4>
   </div>
 </body>
 
