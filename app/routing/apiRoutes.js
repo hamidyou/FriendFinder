@@ -53,9 +53,18 @@ router.post('/api/friends', function (req, res) {
   const diffArray = differenceArray(newFriend.scores, friends)
   const low = min(diffArray)
 
-  console.log(`
-  Your most compatible friend is: ${findMatch(low, diffArray)[0]}.
-  `)
+  const results =
+    `
+    Your most compatible friend is: ${findMatch(low, diffArray)[0]}.
+  `
+
+  fs.writeFile('app/data/results.txt', results, err => {
+    if (err) {
+      throw err
+    }
+    console.log('Results updated successfully.')
+  }
+  )
 
   res.json(newFriend)
 })
