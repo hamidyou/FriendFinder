@@ -15,4 +15,9 @@ router.get('/survey', function (req, res) {
   res.sendFile(path.resolve('app', 'public', 'survey.html'))
 })
 
+// Route to display results
+router.get('/results', function (req, res) {
+  res.sendFile(path.resolve('app', 'public', 'results.html'))
+})
+
 module.exports = router

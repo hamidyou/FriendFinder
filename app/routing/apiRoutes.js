@@ -1,8 +1,8 @@
 // Dependencies
 const express = require('express')
 const friends = require('../data/friends')
-const { concat, pipe, sub, reduce, min, findIndex, map, curry, compose, max } = require('kyanite/dist/kyanite')
-
+const { reduce, min, findIndex, map, curry, compose } = require('kyanite/dist/kyanite')
+const fs = require('fs')
 // Create router variable
 const router = express.Router()
 
@@ -12,30 +12,50 @@ router.get('/api/friends', function (req, res) {
 })
 
 const reducer = x => reduce((acc, num) => Number(acc) + Number(num), 0, x)
-
 const mapper = curry((x, y) => map(a => Math.abs(y - reducer(a.scores)), x))
-
 const getIndex = curry((arr, num) => findIndex(x => x === num, arr))
-
-const getName = curry((arr, idx) => friends[idx].name)
-
+const getInfo = curry((arr, idx) => [friends[idx].name, friends[idx].photo])
 const differenceArray = (x, arr) => compose(mapper(arr), reducer, x)
+const findMatch = (num, arr) => compose(getInfo(arr), getIndex(arr), num)
 
-//   pipe([
-//   reducer, // sum of scores
-//   mapper(arr), // [difference of scores compared to all friends]
-//   min // return the lowest difference
-// ], x)
+const addFriend = (x, y) => {
+  const path = 'app/data/friends.js'
+  const newFriendJson = JSON.stringify(x)
+  const friendsJson = map(a => JSON.stringify(a), y).join(',')
+  const content =
+    `
+    const express = require('express') 
+    const router = express.Router()
+    let friends = [
+      ${newFriendJson},
+      ${friendsJson}
+    ]
+    router.get('/api/friends', function (req, res) {
+      return res.json(friends)
+    })
+
+    module.exports = friends
+    `
+
+  fs.writeFile(path, content, (err) => {
+    if (err) {
+      throw err
+    }
+    console.log('File updated successfully.')
+  })
+}
 
 // Create New Characters - takes in JSON input
 router.post('/api/friends', function (req, res) {
   const newFriend = req.body
+  addFriend(newFriend, friends)
 
   const diffArray = differenceArray(newFriend.scores, friends)
   const low = min(diffArray)
-  const findMatch = (num, arr) => compose(getName(arr), getIndex(arr), num)
 
-  console.log(findMatch(low, diffArray))
+  console.log(`
+  Your most compatible friend is: ${findMatch(low, diffArray)[0]}.
+  `)
 
   res.json(newFriend)
 })
