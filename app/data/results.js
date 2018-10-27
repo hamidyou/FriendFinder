@@ -6,4 +6,11 @@ $(document).ready(function () {
       $('#resultsDisplay').text(response)
     }
   })
+  $.ajax({
+    type: 'GET',
+    url: 'app/data/image.txt',
+    success: function (response) {
+      $('#resultsDisplay').append(response)
+    }
+  })
 })

@@ -53,10 +53,12 @@ router.post('/api/friends', function (req, res) {
   const diffArray = differenceArray(newFriend.scores, friends)
   const low = min(diffArray)
 
+  const compatibleFriend = findMatch(low, diffArray)
+
   const results =
     `
 ${newFriend.name}, thank you very much for participating.
-Your most compatible friend is: ${findMatch(low, diffArray)[0]}.
+Your most compatible friend is: ${compatibleFriend[0]}.
 `
 
   fs.writeFile('app/data/results.txt', results, err => {
@@ -64,6 +66,17 @@ Your most compatible friend is: ${findMatch(low, diffArray)[0]}.
       throw err
     }
     console.log('Results updated successfully.')
+  })
+
+  const photoResults = `
+  <img src="${compatibleFriend[1]}" class="img-fluid mt-5 img-thumbnail">
+  `
+
+  fs.writeFile('app/data/image.txt', photoResults, err => {
+    if (err) {
+      throw err
+    }
+    console.log('Photo URL added successfully.')
   })
   res.json(newFriend)
 })
