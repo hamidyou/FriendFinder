@@ -38,7 +38,7 @@ const addFriend = (x, y) => {
     module.exports = friends
     `
 
-  fs.writeFile(path, content, (err) => {
+  fs.writeFile(path, 'content', (err) => {
     if (err) {
       throw err
     }
@@ -63,7 +63,7 @@ ${newFriend.name}, thank you very much for participating.
 Your most compatible friend is: ${compatibleFriend[0]}.
 `
 
-  fs.writeFile('app/data/results.txt', results, err => {
+  fs.writeFile('app/data/results.txt', 'results', err => {
     if (err) {
       throw err
     }
