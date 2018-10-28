@@ -66,6 +66,7 @@ Your most compatible friend is: ${compatibleFriend[0]}.
       throw err
     }
     console.log('Results updated successfully.')
+    console.log(results)
   })
 
   const photoResults = `
@@ -77,6 +78,7 @@ Your most compatible friend is: ${compatibleFriend[0]}.
       throw err
     }
     console.log('Photo URL added successfully.')
+    console.log(photoResults)
   })
   res.json(newFriend)
 })
