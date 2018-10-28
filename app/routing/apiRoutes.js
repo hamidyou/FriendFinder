@@ -41,6 +41,7 @@ const addFriend = (x, y) => {
     if (err) {
       throw err
     }
+    console.log(newFriendJson, friendsJson)
     console.log('File updated successfully.')
   })
 }
