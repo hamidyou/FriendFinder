@@ -8,6 +8,7 @@ const router = express.Router()
 
 // Displays all friends in JSON format
 router.get('/api/friends', function (req, res) {
+  console.log(friends)
   return res.json(friends)
 })
 
