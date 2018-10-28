@@ -1,7 +1,7 @@
 // Dependencies
 const express = require('express')
 const friends = require('../data/friends')
-const { reduce, min, findIndex, map, curry, compose } = require('kyanite/dist/kyanite')
+const { reduce, min, findIndex, map, curry, compose, concat } = require('kyanite/dist/kyanite')
 const fs = require('fs')
 // Create router variable
 const router = express.Router()
@@ -20,29 +20,13 @@ const differenceArray = (x, arr) => compose(mapper(arr), reducer, x)
 const findMatch = (num, arr) => compose(getInfo(arr), getIndex(arr), num)
 
 const addFriend = (x, y) => {
-  const path = 'app/data/friends.js'
-  const newFriendJson = JSON.stringify(x)
-  const friendsJson = map(a => JSON.stringify(a), y).join(',')
-  const content =
-    `
-    const express = require('express') 
-    const router = express.Router()
-    let friends = [
-      ${newFriendJson},
-      ${friendsJson}
-    ]
-    router.get('/api/friends', function (req, res) {
-      return res.json(friends)
-    })
+  const path = 'app/data/friends.json'
+  y = concat(x, y)
 
-    module.exports = friends
-    `
-
-  fs.writeFile(path, 'content', (err) => {
+  fs.writeFile(path, JSON.stringify(y), (err) => {
     if (err) {
       throw err
     }
-    console.log(newFriendJson, friendsJson)
     console.log('File updated successfully.')
   })
 }
@@ -59,29 +43,18 @@ router.post('/api/friends', function (req, res) {
 
   const results =
     `
-${newFriend.name}, thank you very much for participating.
-Your most compatible friend is: ${compatibleFriend[0]}.
-`
+  ${newFriend.name}, thank you very much for participating.
+  Your most compatible friend is: ${compatibleFriend[0]}.
+  <img src="${compatibleFriend[1]}" class="img-fluid mt-5 img-thumbnail">
+  `
 
-  fs.writeFile('app/data/results.txt', 'results', err => {
+  fs.writeFile('app/data/results.txt', results, err => {
     if (err) {
       throw err
     }
     console.log('Results updated successfully.')
-    console.log(results)
   })
 
-  const photoResults = `
-  <img src="${compatibleFriend[1]}" class="img-fluid mt-5 img-thumbnail">
-  `
-
-  fs.writeFile('app/data/image.txt', photoResults, err => {
-    if (err) {
-      throw err
-    }
-    console.log('Photo URL added successfully.')
-    console.log(photoResults)
-  })
   res.json(newFriend)
 })
 

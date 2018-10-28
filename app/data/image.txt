@@ -1,3 +1,0 @@
-
-  <img src="" class="img-fluid mt-5 img-thumbnail">
-  
