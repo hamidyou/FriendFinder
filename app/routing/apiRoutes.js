@@ -1,6 +1,6 @@
 // Dependencies
 const express = require('express')
-const friends = require('../data/friends')
+const friends = require('../data/friends.json')
 const { reduce, min, findIndex, map, curry, compose, concat } = require('kyanite/dist/kyanite')
 const fs = require('fs')
 // Create router variable
