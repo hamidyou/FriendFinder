@@ -1,11 +1,15 @@
+const k = kyanite
+
 $(document).ready(function () {
   $.ajax({
     type: 'GET',
-    url: 'app/data/results.json',
+    url: 'api/friends',
     success: function (response) {
-      $('#surveyor').text(response.newFriend.name)
-      $('#match').text(response.compatibleFriend[0])
-      $('img').attr('src', response.compatibleFriend[1])
+      const data = k.last(response)
+      $('#surveyor').text(data.name)
+      $('#match').text(data.match[0])
+      $('img').attr('src', data.match[1])
+      return response
     }
   })
 })
