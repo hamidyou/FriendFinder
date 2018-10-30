@@ -18,24 +18,24 @@ const getInfo = curry((arr, idx) => [friends[idx].name, friends[idx].photo])
 const differenceArray = (x, arr) => compose(mapper(arr), reducer, x)
 const findMatch = (num, arr) => compose(getInfo(arr), getIndex(arr), num)
 
-const addFriend = y => {
-  const path = 'app/data/friends.json'
+// const addFriend = y => {
+//   const path = 'app/data/friends.json'
 
-  fs.writeFile(path, JSON.stringify(y), (err) => {
-    if (err) {
-      throw err
-    }
-    console.log('File updated successfully.')
-  })
-}
+//   fs.writeFile(path, JSON.stringify(y), (err) => {
+//     if (err) {
+//       throw err
+//     }
+//     console.log('File updated successfully.')
+//   })
+// }
 
-const match = x => {
-  fs.writeFile('app/data/results.json', JSON.stringify(x), err => {
-    if (err) {
-      throw err
-    }
-  })
-}
+// const match = x => {
+//   fs.writeFile('app/data/results.json', JSON.stringify(x), err => {
+//     if (err) {
+//       throw err
+//     }
+//   })
+// }
 
 router.post('/api/friends', function (req, res) {
   const newFriend = req.body
@@ -47,14 +47,12 @@ router.post('/api/friends', function (req, res) {
   newFriend.match = compatibleFriend
 
   friends = concat(newFriend, friends)
-  const results = { newFriend, compatibleFriend }
-  console.log(results)
 
-  addFriend(friends)
-  match(results)
+  // addFriend(friends)
+  // match(newFriend)
 
   console.log('Results updated successfully.')
-  res.json(newFriend)
+  res.json(compatibleFriend)
 })
 
 module.exports = router
