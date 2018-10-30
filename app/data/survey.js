@@ -20,6 +20,6 @@ $(document).on('click', '#submit', function (event) {
   // Question: What does this code do??
   $.post('/api/friends', newFriend)
     .then(function (data) {
-      console.log('newFriend', data)
+      return data
     })
 })

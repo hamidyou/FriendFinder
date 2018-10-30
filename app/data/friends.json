@@ -1,1 +1,18 @@
-[{"name":"Zayne","photo":"","scores":["6","1","2","1","4","1","1","6","1","3"]},{"name":"Joseph","photo":"","scores":["1","1","2","2","3","3","4","4","5","5"]},{"name":"Jane","photo":"","scores":["3","3","2","2","1","1","4","4","3","3"]},{"name":"Youssef","photo":"https://media.licdn.com/dms/image/C4D03AQEzsiFwPjRq8w/profile-displayphoto-shrink_200_200/0?e=1546473600&v=beta&t=eCxJtuIBmRzPy2qXdJza1l_ga_pFrHBjVByyL0mfjQ8","scores":["5","4","2","4","4","1","3","5","3","5"]}]
+[
+  {
+    "name": "Youssef",
+    "photo": "https://media.licdn.com/dms/image/C4D03AQEzsiFwPjRq8w/profile-displayphoto-shrink_200_200/0?e=1546473600&v=beta&t=eCxJtuIBmRzPy2qXdJza1l_ga_pFrHBjVByyL0mfjQ8",
+    "scores": [
+      "5",
+      "4",
+      "2",
+      "4",
+      "4",
+      "1",
+      "3",
+      "5",
+      "3",
+      "5"
+    ]
+  }
+]
