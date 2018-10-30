@@ -1,0 +1,18 @@
+* {
+  color: white;
+}
+
+body {
+  background-image: url('../images/adventure-backlit-community-207896.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat;
+}
+
+.nav-item {
+  color: white;
+}
+.nav-item:hover {
+  background: black;
+  color: white;
+}
+
